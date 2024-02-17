@@ -2,6 +2,7 @@ import React from "react";
 import Card from "./Card";
 import { useSelector } from "react-redux";
 import Shimmer from "../Shimmer";
+import { Link } from "react-router-dom";
 
 function RestaurantsList() {
   const restaurants = useSelector((store) => store.restaurantList);
@@ -17,8 +18,9 @@ function RestaurantsList() {
 
         
       return (
+           <Link to={"/restaurant/"+rest?.info?.id} key={rest?.info?.id}>
             <Card
-            key={rest?.info?.id}
+            
             name={rest?.info?.name}
             rating={rest?.info?.avgRating}
             time={rest?.info?.sla?.slaString}
@@ -26,6 +28,7 @@ function RestaurantsList() {
             location={rest?.info?.areaName}
             imageId={rest?.info?.cloudinaryImageId}
             />
+            </Link>
             )
         })}
         </div>
